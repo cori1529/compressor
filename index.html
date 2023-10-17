@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+
+2020.6.4 배터리 정보 추가
+
+-->
+<html lang="ko">
+  <head>
+    <meta charset="utf-8"> <!-- 다국어 문자을 지원하는 인코딩  -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"><!--   브라우저와의 호환성 설정,   -->
+    <title>무인회수기 환전요청상세검색 </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- 뷰포트 설정을 통해 모바일 디바이스에서 웹페이지가 올바그레랜더링 하게 해준다.-->
+    <style>
+      #jb-container {
+        width: 1000px;
+        margin: 0px auto;
+        padding: 20px;
+        border: 1px solid #bcbcbc;
+      }
+      #jb-header {
+        text-align: center;
+        padding: 5px;
+        margin-bottom: 5px;
+        border: 2px solid #bcbcbc;
+      }
+      #jb-content {      /*   id=jb-content 관련된 css style정의  ,실제 사용되고 있는   */
+        width: 500px;
+        padding: 2px;
+        margin : 0 auto;
+        display: block;
+
+        border: 2px solid #bcbcbc;
+        text-align: center;
+      }
+
+      #jb-sidebar {   /* css 선택자에 관한것으로,  # 아이디,  . 클래스*/
+        width: 45%;
+        padding: 20px;
+        margin-bottom: 20px;
+        float: right;
+        border: 2px solid #bcbcbc;
+        text-align: center;
+
+      }
+      #jb-footer {
+        clear: both;
+        padding: 20px;
+        border: 2px solid #bcbcbc;
+      }
+      .relative2 {
+      position: fixed;
+      top: 580px;
+      left: 162px;
+      background-color: white;
+      border: 1px solid #bcbcbc;
+      width: 422px;
+      height: 295px;
+    }   
+      @media screen and (max-width:480px) { /* 모바일 화면에 대한 스타일을 조정하는 부분으로, 뷰포크 크기가 480 PX 이하일때만*/
+        #jb-container {
+          width: auto;
+        }
+        #jb-content {
+          float: none;
+          width: auto;
+        }
+        #jb-sidebar {
+          float: none;
+          width: auto;
+          
+        }
+        .relative2 {
+          position: absolute;
+          float: none;
+          width: auto;
+          top: 10px;
+          left: 0px;
+        }
+      }
+     table {
+        border: 1px solid #ddd;
+        border-collapse: collapse;
+        width: 100%;
+            }
+
+    td {
+        text-align: center;
+        padding: 8px;
+        border-width:1px; 
+        border-color:gray; 
+        border-style:solid;
+            }
+    th {
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    border-width:1px; 
+    border-color:gray; 
+    border-style:solid;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 5px 5px;
+    margin: 5px 0;
+    box-sizing: border-box;
+   
+    border: 2px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    text-align: center;
+}
+input[type=password] {
+    width: 100%;
+    padding: 5px 5px;
+    margin: 5px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    text-align: center;
+}
+
+input[type=text]:focus {
+    border: 3px solid #555;
+}
+
+h2{
+ color: blue;
+
+}
+
+
+    tr:nth-child(even){background-color: #f2f2f2} /* 표의 짝수행에 대한 배경색 지정*/
+    </style>
+  </head>
+ 
+  <body>
+    <?php $dt=date("Y/m/d"); ?> <!-- 현재날짜를 가져와서 dt 라는 변수에 넣는다.-->
+    <div id="jb-content">
+    <h2>GRC700(무인회수기) 환전요청상황</h2>
+    <img src="grc700.png"  width="150">
+   
+    
+    <form method="post" action="query_data_with_sn_en.php"> <!--  해당폼이 작성된면   해달 php 페이지로 데이터가 전송된다.-->
+      <table width="200" border="0" cellspacing="1">
+        <tr><td style='width:30%; font-size:20px; font-weight:700 gfg;'>명령어</td><td style='width:70%;'> <input type="text" name="sn"placeholder="N1234567"></td></tr>
+        <tr><td style='width:30%; font-size:20px; font-weight:700;'>시작일</td><td style='width:70%;'> <input type="text" name="dtb"placeholder=<?php echo "$dt" ?>></td></tr>
+        <tr><td style='width:30%; font-size:20px; font-weight:700;'>종료일</td><td style='width:70%;'> <input type="text" name="dte"placeholder=<?php echo "$dt" ?>></td></tr>         
+        <tr><td style='width:30%; font-size:20px; font-weight:700;'>표시갯수</td><td style='width:70%;'> <input type="text" name="num"placeholder="100"</td></tr>         
+      </table>
+      <br>
+      <input type="submit" name="Submit" value="요청" style="height:40px; width:40%;"> <!--  해장폼이 전송되고-->
+      <input type="reset" name="Submit2" value="지우기" style="height:40px; width:40%;"> <!--  해장폼이 clear e된다.--> 
+    </form>
+  </div>
+  </body>
+</html>
